@@ -23,7 +23,7 @@ Bind the ``djang-excel`` ``urls.py`` into your main ``urls.py`` with something l
   
 Usage
 ----
-A single objects list::
+Extends the ``excel.views.Download`` and set the objs atribule with the attrs you want in you excel file.
 
 
 	from excel.views import Download
@@ -33,7 +33,7 @@ A single objects list::
 		objs = MyModel.objects.all()
 
 
-The Database::
+To donwload all your database data in a single file visit:
 
   
 	visit the ``your_projet_url/excel/database``
