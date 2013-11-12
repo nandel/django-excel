@@ -102,7 +102,7 @@ class ExcelBookResponse(HttpResponse):
         book_data = []
         for sheet in book:
             if valid_sheet_data(sheet):
-                book_data = book_data + [get_sheet_data(sheet)]
+                book_data = book_data + [get_sheet_data(sheet, headers)]
         output = get_output(book_data, force_csv, encoding)
 
         super(ExcelBookResponse, self).__init__(content=output['output'], mimetype=output['mimetype'])
@@ -113,7 +113,7 @@ class ExcelResponse(HttpResponse):
     def __init__(self, data, output_name='excel_data', headers=None,
                  force_csv=False, encoding='utf8'):
 
-        output = get_output((get_sheet_data(data), ), force_csv, encoding)
+        output = get_output((get_sheet_data(data, headers), ), force_csv, encoding)
 
         super(ExcelResponse, self).__init__(content=output['output'], mimetype=output['mimetype'])
         self['Content-Disposition'] = 'attachment;filename="%s.%s"' % \
