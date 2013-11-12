@@ -18,7 +18,7 @@ Configuration
 Bind the ``djang-excel`` ``urls.py`` into your main ``urls.py`` with something like:
 
 
-  url(r'^excel/', include('excel.urls')),
+	url(r'^excel/', include('excel.urls')),
  
   
 Usage
@@ -26,16 +26,16 @@ Usage
 A single objects list::
 
 
-  from excel.views import Download
-  from .models import MyModel
+	from excel.views import Download
+	from .models import MyModel
   
-  class MyDownloadPage(Download):
-      objs = MyModel.objects.all()
+	class MyDownloadPage(Download):
+		objs = MyModel.objects.all()
 
 
 The Database::
 
   
-  visit the ``your_projet_url/excel/database``
+	visit the ``your_projet_url/excel/database``
 
 
