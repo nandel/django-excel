@@ -4,20 +4,9 @@ from django.db.models.query import QuerySet, ValuesQuerySet
 from django.http import HttpResponse
 
 def valid_sheet_data(data):
-    # Make sure we've got the right type of data to work with
     valid_data = False
-    if isinstance(data, ValuesQuerySet):
-        data = list(data)
-    elif isinstance(data, QuerySet):
-        data = list(data.values())
-    if hasattr(data, '__getitem__'):
-        if isinstance(data[0], dict):
-            headers = data[0].keys()
-            data = [[row[col] for col in headers] for row in data]
-            data.insert(0, headers)
-        if hasattr(data[0], '__getitem__'):
-            valid_data = True
-    assert valid_data is True, "ExcelResponse requires a sequence of sequences"
+    if isinstance(data, ValuesQuerySet) or isinstance(data, QuerySet) or hasattr(data, '__getitem__'):
+        valid_data = True
 
     return valid_data
 
